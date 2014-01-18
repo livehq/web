@@ -6,7 +6,8 @@ define(['angular'], ->
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'ngRoute'
+    'ngRoute',
+    'angular-client-side-auth'
   ])
 
   namespace NAMESPACE, (exports) ->

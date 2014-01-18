@@ -47,7 +47,7 @@ require.config({
   },
 
   deps: [
-#    narwhalComponents + 'camfire-angular-module/.tmp/scripts/main',
+    './modules/angular-client-side-auth/main',
     './bootstrap'
   ]
 });
