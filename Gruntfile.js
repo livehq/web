@@ -15,6 +15,9 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  // Adds jade support
+  grunt.loadNpmTasks('grunt-contrib-jade');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -27,6 +30,10 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
+      jade: {
+        files: ['<%= yeoman.app %>/*.jade', '<%= yeoman.app %>/views/{,*/}*.jade'],
+        tasks: ['jade:dist']
+      },
       coffee: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}'],
         tasks: ['newer:coffee:dist']
@@ -130,6 +137,7 @@ module.exports = function (grunt) {
       }
     },
 
+    // Note I am not using this for now since I am using jade
     // Automatically inject Bower components into the app
     'bower-install': {
       app: {
@@ -164,6 +172,31 @@ module.exports = function (grunt) {
         }]
       }
     },
+
+      // Compiles jade
+      jade: {
+          dist: {
+              options: {
+                  pretty: true
+              },
+              files: [
+                  {
+                      expand: true,
+                      cwd: '<%= yeoman.app %>/views',
+                      src: '{,*/}*.jade',
+                      dest: '.tmp/views',
+                      ext: '.html'
+                  },
+                  {
+                      expand: true,
+                      cwd: '<%= yeoman.app %>',
+                      src: '*.jade',
+                      dest: '.tmp',
+                      ext: '.html'
+                  }
+              ]
+          }
+      },
 
 
     // Compiles Sass to CSS and generates necessary files if requested
@@ -322,14 +355,17 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'coffee:dist',
+        'jade:dist',
         'compass:server'
       ],
       test: [
         'coffee',
+        'jade',
         'compass'
       ],
       dist: [
         'coffee',
+        'jade',
         'compass:dist',
         'imagemin',
         'svgmin'
@@ -379,7 +415,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'bower-install',
+//      'bower-install',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
@@ -402,7 +438,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'bower-install',
+//    'bower-install',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
