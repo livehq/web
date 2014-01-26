@@ -1,5 +1,4 @@
-define(['./../app', './constants'], ->
-  # Evalute the safety of this
+define(['./../app', './configuration'], ->
 #  streamCommander.app
 #  .config ["$sceDelegateProvider", ($sceDelegateProvider) ->
 #      console.log('inside scedelegate')

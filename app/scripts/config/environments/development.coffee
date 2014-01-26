@@ -1,6 +1,16 @@
 define([], ->
   class DevelopmentConfiguration
     whitelist: ["self", "http://localhost:3000/**", "http://localhost:9000/**"]
+    oauthioPublickey: 'otTvGcYtLMK1Q6W6d8LHeQlO4lo'
+
+    siteOptions: {
+      enableRegistration: false,
+      login: {
+        enableForm: false,
+        enableOauth: true
+      }
+    }
+
 
 #    signalSecure: false
 #    signalUrl: window.location.hostname + ':8080'
