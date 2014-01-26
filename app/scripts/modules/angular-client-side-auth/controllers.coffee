@@ -2,7 +2,7 @@
 
 define(['./app'], ->
 # Controllers
-  angular.module("angular-client-side-auth").controller "NavCtrl", ["$rootScope", "$scope", "$location", "Auth", ($rootScope, $scope, $location, Auth) ->
+  angular.module("angular-client-side-auth").controller "NavCtrl", ["$rootScope", "$scope", "$location", "Auth", "Constants", ($rootScope, $scope, $location, Auth) ->
     $scope.user = Auth.user
     $scope.userRoles = Auth.userRoles
     $scope.accessLevels = Auth.accessLevels
@@ -27,7 +27,32 @@ define(['./app'], ->
 
 
     $scope.loginOauth = (provider) ->
-      $window.location.href = "/auth/" + provider
+      OAuth.initialize('otTvGcYtLMK1Q6W6d8LHeQlO4lo')
+      OAuth.popup provider, {state: 1}, (err, res) ->
+        if (err)
+          console.log err
+#          $window.location.href = "/login"
+        else
+          Auth.login
+            username: 'username'
+            password: 'password'
+            rememberme: false
+            res: res
+          , ((res) ->
+              $location.path "/"
+          ), (err) ->
+            $rootScope.error = "Failed to login"
+
+
+
+#          $window.location.href = "/"
+#          res.get("http://127.0.0.1:3000/users/sign_in").done (data) ->
+#            alert "Hello " + data.name
+
+
+
+#      $window.location.href = "/auth/" + provider
+#      $window.location.href = "localhost:3000/users/auth/" + provider
   ]
   angular.module("angular-client-side-auth").controller "HomeCtrl", ["$rootScope", ($rootScope) ->
   ]

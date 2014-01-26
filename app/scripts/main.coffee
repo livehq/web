@@ -12,8 +12,10 @@ require.config({
   paths: {
 #    websocketRails: narwhaltalkLibs + 'websocket_rails',
 #    jquery: narwhalComponents + 'jquery/jquery',
+    config: 'config',
     angular: components + 'angular/angular',
     domReady: components + 'requirejs-domready/domReady',
+    oauthJs: "#{components}oauth-js/oauth.js",
 #    angularResource: narwhalComponents + 'angular-resource/angular-resource',
 #    angularCookies: narwhalComponents + 'angular-cookies/angular-cookies',
 #    angularSanitize: narwhalComponents + 'angular-sanitize/angular-sanitize',
@@ -31,8 +33,10 @@ require.config({
 #  },
 ##    'async': {}
   'namespace': {},
+  'config': {}
 #  'webRtcAdapter': {},
   'angular': {},
+  'oauthJs': {},
 #  'angularResource': {
 #    deps: ['angular']
 #  },
@@ -54,8 +58,13 @@ require.config({
 
 
 require([
+  './config',
+  './config/constants',
+  './config/security',
   './config/routes',
   './controllers/main'
+
+#  './services/configuration_service',
 
 #  'services/services',
 #  'services/socket_service',

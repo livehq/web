@@ -1,9 +1,9 @@
 define(
   [
     'require',
+    'namespace',
 #    'config',
 #    'config/development',
-    'namespace'
     'app'
   ],
 (require) ->

@@ -18,6 +18,8 @@ module.exports = function (grunt) {
   // Adds jade support
   grunt.loadNpmTasks('grunt-contrib-jade');
 
+  grunt.loadNpmTasks('grunt-ng-constant');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -355,6 +357,37 @@ module.exports = function (grunt) {
         src: '{,*/}*.css'
       }
     },
+      // A cool way of managing environments taken from:
+      // http://stackoverflow.com/questions/16339595/angular-js-configuration-for-different-enviroments
+      ngconstant: {
+          options: {
+              space: '  '
+          },
+
+          // targets
+          development: [
+              {
+                  dest: '.tmp/scripts/config.js',
+//                  dest: '<%= yeoman.app %>/scripts/config.js',
+                  wrap: '"use strict";\n\n <%= __ngModule %>',
+                  name: 'config',
+                  constants: {
+                      ENV: 'development'
+                  }
+              }
+          ],
+          production: [
+              {
+//                  dest: '<%= yeoman.app %>/scripts/config.js',
+                  dest: '<%= yeoman.dist %>/scripts/config.js',
+                  wrap: '"use strict";\n\n <%= __ngModule %>',
+                  name: 'config',
+                  constants: {
+                      ENV: 'production'
+                  }
+              }
+          ]
+      },
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
@@ -413,6 +446,7 @@ module.exports = function (grunt) {
   });
 
 
+
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
@@ -420,6 +454,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'ngconstant:development',
 //      'bower-install',
       'concurrent:server',
       'autoprefixer',
@@ -443,6 +478,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'ngconstant:production',
 //    'bower-install',
     'useminPrepare',
     'concurrent:dist',

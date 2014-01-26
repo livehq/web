@@ -12,7 +12,9 @@
     "angular-resource": "1.2.6",
     "angular-cookies": "1.2.6",
     "angular-sanitize": "1.2.6",
-    "angular-route": "1.2.6"
+    "angular-route": "1.2.6",
+    "oauth-js": "https://github.com/oauth-io/oauth-js.git"
+
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

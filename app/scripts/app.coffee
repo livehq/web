@@ -3,6 +3,7 @@
 define(['angular'], ->
   NAMESPACE = 'streamCommander'
   app = angular.module('webApp', [
+    'config',
     'ngCookies',
     'ngResource',
     'ngSanitize',
