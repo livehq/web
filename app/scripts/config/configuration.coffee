@@ -5,6 +5,6 @@ define(['./../app', './environments/development', './environments/production'], 
       when 'production' then new streamCommander.ProductionConfiguration
       else throw Error("Could not load configuration service!")
 
-    $provide.constant('Constants', constants);
+    $provide.constant('constants', constants);
   )
 )
