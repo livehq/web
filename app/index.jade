@@ -30,9 +30,9 @@ body(data-ng-cloak)
                 ul.nav.nav-tabs
                     li(data-access-level='accessLevels.anon', active-nav)
                         a(href='/login') Log in
-                    li(data-access-level='accessLevels.anon', active-nav)
+                    li(ng-show='enableRegistration', data-access-level='accessLevels.anon', active-nav)
                         a(href='/register') Register
-                    li(data-access-level='accessLevels.user', active-nav)
+                    li(data-access-level='accessLevels.anon', active-nav)
                         a(href='/') Home
                     li(data-access-level='accessLevels.user', active-nav)
                         a(href='/private') Private

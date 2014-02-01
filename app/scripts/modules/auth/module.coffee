@@ -1,11 +1,11 @@
 "use strict"
-define([], ->
-  angular.module("angular-client-side-auth", ["ngCookies", "ngRoute"]).config(["$routeProvider", "$locationProvider", "$httpProvider", ($routeProvider, $locationProvider, $httpProvider) ->
+define(['namespace'], ->
+  module = angular.module("auth", ["ngCookies", "ngRoute"]).config(["$routeProvider", "$locationProvider", "$httpProvider", ($routeProvider, $locationProvider, $httpProvider) ->
     access = routingConfig.accessLevels
     $routeProvider.when "/",
       templateUrl: "home"
       controller: "HomeCtrl"
-      access: access.user
+      access: access.anon
 
     $routeProvider.when "/login",
       templateUrl: "login"
@@ -51,4 +51,7 @@ define([], ->
           $location.path "/login"
 
   ]
+
+  namespace 'auth', (exports) ->
+    exports.module = module
 )

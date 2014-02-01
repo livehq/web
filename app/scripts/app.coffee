@@ -8,7 +8,8 @@ define(['angular'], ->
     'ngResource',
     'ngSanitize',
     'ngRoute',
-    'angular-client-side-auth'
+    'oauthio',
+    'auth'
   ])
 
   namespace NAMESPACE, (exports) ->

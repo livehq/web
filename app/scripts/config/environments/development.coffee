@@ -3,6 +3,12 @@ define([], ->
     whitelist: ["self", "http://localhost:3000/**", "http://localhost:9000/**"]
     oauthioPublickey: 'otTvGcYtLMK1Q6W6d8LHeQlO4lo'
 
+    oauthio: {
+      publicKey: 'otTvGcYtLMK1Q6W6d8LHeQlO4lo'
+      callbackUri: 'http://localhost:3000/users/auth/oauthio/callback'
+
+    }
+
     siteOptions: {
       enableRegistration: false,
       login: {

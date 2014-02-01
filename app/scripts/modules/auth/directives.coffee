@@ -1,6 +1,6 @@
 "use strict"
-define(['./app'], ->
-  angular.module("angular-client-side-auth").directive "accessLevel", ["Auth", (Auth) ->
+define(['./module'], ->
+  angular.module("auth").directive "accessLevel", ["Auth", (Auth) ->
     restrict: "A"
     link: ($scope, element, attrs) ->
       updateCSS = ->
@@ -22,7 +22,7 @@ define(['./app'], ->
         updateCSS()
 
   ]
-  angular.module("angular-client-side-auth").directive "activeNav", ["$location", ($location) ->
+  angular.module("auth").directive "activeNav", ["$location", ($location) ->
     restrict: "A"
     link: (scope, element, attrs) ->
       nestedA = element.find("a")[0]

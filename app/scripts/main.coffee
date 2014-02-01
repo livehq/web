@@ -15,7 +15,7 @@ require.config({
     config: 'config',
     angular: components + 'angular/angular',
     domReady: components + 'requirejs-domready/domReady',
-    oauthJs: "#{components}oauth-js/oauth.js",
+    oauthJs: "#{components}oauth-js/oauth",
 #    angularResource: narwhalComponents + 'angular-resource/angular-resource',
 #    angularCookies: narwhalComponents + 'angular-cookies/angular-cookies',
 #    angularSanitize: narwhalComponents + 'angular-sanitize/angular-sanitize',
@@ -51,18 +51,20 @@ require.config({
   },
 
   deps: [
-    './modules/angular-client-side-auth/main',
+    './modules/oauthio/main',
+    './modules/auth/main',
     './bootstrap'
   ]
 });
 
-
 require([
   './config',
-  './config/constants',
+  './config/configuration',
   './config/security',
   './config/routes',
   './controllers/main'
+
+  ,'./services/users_service'
 
 #  './services/configuration_service',
 
